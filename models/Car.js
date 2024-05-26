@@ -21,10 +21,6 @@ const carSchema = new mongoose.Schema({
     type: String,
     required: true    
   },
-  transmission: {
-    type: String,
-    required: true
-  },
   mileage: {
     type: String,
     required: true
