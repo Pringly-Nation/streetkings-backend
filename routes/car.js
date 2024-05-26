@@ -27,7 +27,7 @@ router.get('/', Utils.authenticateToken, (req, res) => {
 router.post('/', (req, res) => {
   // validate 
   if(Object.keys(req.body).length === 0){   
-    return res.status(400).send({message: "car content can't be empty"})
+    return res.status(400).send({message: "Car content can't be empty"})
   }
   // validate - check if image file exist
   if(!req.files || !req.files.image){

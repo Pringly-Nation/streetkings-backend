@@ -33,9 +33,9 @@ app.use('/auth', authRouter)
 const userRouter = require('./routes/user')
 app.use('/user', userRouter)
 
-// haircut
-const haircutRouter = require('./routes/haircut')
-app.use('/haircut', haircutRouter)
+// car
+const carRouter = require('./routes/car')
+app.use('/car', carRouter)
 
 
 // run app listen on port --------------------
