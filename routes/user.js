@@ -5,11 +5,11 @@ const User = require('./../models/User')
 const path = require('path')
 
 // PUT - add favouriteHaircut --------------------------------------
-router.put('/addFavHaircut/', Utils.authenticateToken, (req, res) => {  
+router.put('/addFavCar/', Utils.authenticateToken, (req, res) => {  
   // validate check
-  if(!req.body.haircutId){
+  if(!req.body.carId){
     return res.status(400).json({
-      message: "No haircut specified"
+      message: "No car specified"
     })
   }
   // add haircutId to favouriteHaircuts field (array - push)
@@ -17,18 +17,18 @@ router.put('/addFavHaircut/', Utils.authenticateToken, (req, res) => {
     _id: req.user._id
   }, {
     $push: {
-      favouriteHaircuts: req.body.haircutId
+      favouriteCar: req.body.carId
     }
   })
     .then((user) => {            
       res.json({
-        message: "Haircut added to favourites"
+        message: "Car added to favourites"
       })
     })
     .catch(err => {
       console.log(err)
       res.status(500).json({
-        message: "Problem adding favourite haircut"
+        message: "Problem adding favourite car"
       })
     })
 })
@@ -41,7 +41,7 @@ router.get('/:id', Utils.authenticateToken, (req, res) => {
     })
   }
 
-  User.findById(req.params.id).populate('favouriteHaircuts')
+  User.findById(req.params.id).populate('favouriteCars')
     .then(user => {
       res.json(user)
     })

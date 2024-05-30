@@ -43,9 +43,10 @@ router.post('/', (req, res) => {
     let newCar = new Car({
       name: req.body.name,
       price: req.body.price,
+      colour: req.body.colour,
       user: req.body.user,
       image: uniqueFilename,
-      tranmission: req.body.transmission,
+      driveTrain: req.body.driveTrain,
       mileage: req.body.mileage
     })
   
