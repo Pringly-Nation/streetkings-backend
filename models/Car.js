@@ -25,10 +25,6 @@ const carSchema = new mongoose.Schema({
     type: String,
     required: true    
   },
-  driveTrain:{
-    type: String,
-    required: true
-  },
   mileage: {
     type: String,
     required: true

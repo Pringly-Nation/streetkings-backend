@@ -46,7 +46,6 @@ router.post('/', (req, res) => {
       colour: req.body.colour,
       user: req.body.user,
       image: uniqueFilename,
-      driveTrain: req.body.driveTrain,
       mileage: req.body.mileage
     })
   
