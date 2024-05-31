@@ -38,7 +38,6 @@ const userSchema = new mongoose.Schema({
   favouriteCars: [
     { type: Schema.ObjectId, ref: 'Car' }
   ]
-  
 }, { timestamps: true })
 
 // encrypt password field on save

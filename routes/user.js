@@ -12,12 +12,12 @@ router.put('/addFavCar/', Utils.authenticateToken, (req, res) => {
       message: "No car specified"
     })
   }
-  // add haircutId to favouriteHaircuts field (array - push)
+  // add carId to favouriteCars field (array - push)
   User.updateOne({
     _id: req.user._id
   }, {
     $push: {
-      favouriteCar: req.body.carId
+      favouriteCars: req.body.carId
     }
   })
     .then((user) => {            
