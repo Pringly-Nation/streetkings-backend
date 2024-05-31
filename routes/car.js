@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Utils = require('./../utils')
-const Car = require('./../models/Car')
 const path = require('path')
+const Car = require('./../models/Car')
 
 // GET- get all cars ---------------------------
 router.get('/', Utils.authenticateToken, (req, res) => {
