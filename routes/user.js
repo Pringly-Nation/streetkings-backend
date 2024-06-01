@@ -33,6 +33,34 @@ router.put('/addFavCar/', Utils.authenticateToken, (req, res) => {
     })
 })
 
+router.put('/addCartCars/', Utils.authenticateToken, (req, res) => {  
+  // validate check
+  if(!req.body.carId){
+    return res.status(400).json({
+      message: "No car specified"
+    })
+  }
+  // add carId to favouriteCars field (array - push)
+  User.updateOne({
+    _id: req.user._id
+  }, {
+    $push: {
+      cartCars: req.body.carId
+    }
+  })
+    .then((user) => {            
+      res.json({
+        message: "Car added to cart"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        message: "Problem adding car to cart"
+      })
+    })
+})
+
 // GET - get single user -------------------------------------------------------
 router.get('/:id', Utils.authenticateToken, (req, res) => {
   if(req.user._id != req.params.id){

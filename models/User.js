@@ -37,6 +37,9 @@ const userSchema = new mongoose.Schema({
   },
   favouriteCars: [
     { type: Schema.ObjectId, ref: 'Car' }
+  ],
+  cartCars: [
+    { type: Schema.ObjectId, ref: 'Car' }
   ]
 }, { timestamps: true })
 
