@@ -4,7 +4,7 @@ const Utils = require('./../utils')
 const User = require('./../models/User')
 const path = require('path')
 
-// PUT - add favouriteHaircut --------------------------------------
+// PUT - add favourite Car --------------------------------------
 router.put('/addFavCar/', Utils.authenticateToken, (req, res) => {  
   // validate check
   if(!req.body.carId){
@@ -33,14 +33,14 @@ router.put('/addFavCar/', Utils.authenticateToken, (req, res) => {
     })
 })
 
-router.put('/addCartCars/', Utils.authenticateToken, (req, res) => {  
+router.put('/addCartCar/', Utils.authenticateToken, (req, res) => {  
   // validate check
   if(!req.body.carId){
     return res.status(400).json({
       message: "No car specified"
     })
   }
-  // add carId to favouriteCars field (array - push)
+  // add carId to cartCars field (array - push)
   User.updateOne({
     _id: req.user._id
   }, {
@@ -61,6 +61,7 @@ router.put('/addCartCars/', Utils.authenticateToken, (req, res) => {
     })
 })
 
+
 // GET - get single user -------------------------------------------------------
 router.get('/:id', Utils.authenticateToken, (req, res) => {
   if(req.user._id != req.params.id){
@@ -69,7 +70,7 @@ router.get('/:id', Utils.authenticateToken, (req, res) => {
     })
   }
 
-  User.findById(req.params.id).populate('favouriteCars')
+  User.findById(req.params.id).populate('favouriteCars').populate('cartCars')
     .then(user => {
       res.json(user)
     })
