@@ -61,6 +61,61 @@ router.put('/addCartCar/', Utils.authenticateToken, (req, res) => {
     })
 })
 
+router.put('/removeCartCar/', Utils.authenticateToken, (req, res) => {  
+  // validate check
+  if(!req.body.carId){
+    return res.status(400).json({
+      message: "No car specified"
+    })
+  }
+  // add carId to cartCars field (array - push)
+  User.updateOne({
+    _id: req.user._id
+  }, {
+    $pull: {
+      cartCars: req.body.carId
+    }
+  })
+    .then((user) => {            
+      res.json({
+        message: "Car removed from cart"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        message: "Problem removing car from cart"
+      })
+    })
+})
+
+router.put('/removeGarageCar/', Utils.authenticateToken, (req, res) => {  
+  // validate check
+  if(!req.body.carId){
+    return res.status(400).json({
+      message: "No car specified"
+    })
+  }
+  // add carId to cartCars field (array - push)
+  User.updateOne({
+    _id: req.user._id
+  }, {
+    $pull: {
+      favouriteCars: req.body.carId
+    }
+  })
+    .then((user) => {            
+      res.json({
+        message: "Car removed from garage"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        message: "Problem removing car from garage"
+      })
+    })
+})
 
 // GET - get single user -------------------------------------------------------
 router.get('/:id', Utils.authenticateToken, (req, res) => {
