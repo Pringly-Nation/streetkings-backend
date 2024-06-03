@@ -61,14 +61,14 @@ router.put('/addCartCar/', Utils.authenticateToken, (req, res) => {
     })
 })
 
-router.put('/removeCartCar/', Utils.authenticateToken, (req, res) => {  
+router.put('/removeCartCar/', Utils.authenticateToken, (req, res) => {   //function to remove carted cars
   // validate check
   if(!req.body.carId){
     return res.status(400).json({
       message: "No car specified"
     })
   }
-  // add carId to cartCars field (array - push)
+  // remove carId from cartCars field (array - pull)
   User.updateOne({
     _id: req.user._id
   }, {
@@ -89,14 +89,14 @@ router.put('/removeCartCar/', Utils.authenticateToken, (req, res) => {
     })
 })
 
-router.put('/removeGarageCar/', Utils.authenticateToken, (req, res) => {  
+router.put('/removeGarageCar/', Utils.authenticateToken, (req, res) => {  //function to remove garage cars
   // validate check
   if(!req.body.carId){
     return res.status(400).json({
       message: "No car specified"
     })
   }
-  // add carId to cartCars field (array - push)
+  // remove carId from favouriteCars field (array - pull)
   User.updateOne({
     _id: req.user._id
   }, {
@@ -125,7 +125,7 @@ router.get('/:id', Utils.authenticateToken, (req, res) => {
     })
   }
 
-  User.findById(req.params.id).populate('favouriteCars').populate('cartCars')
+  User.findById(req.params.id).populate('favouriteCars').populate('cartCars') //populate both favouritecars and cart cars to work
     .then(user => {
       res.json(user)
     })

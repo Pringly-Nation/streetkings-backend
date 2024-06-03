@@ -35,10 +35,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  favouriteCars: [
+  favouriteCars: [ //allows for an array of favourite cars to be in the database, we can then use it to populate other components
     { type: Schema.ObjectId, ref: 'Car' }
   ],
-  cartCars: [
+  cartCars: [ //allows for an array of favourite cars to be in the database, we can then use it to populate other components
     { type: Schema.ObjectId, ref: 'Car' }
   ]
 }, { timestamps: true })

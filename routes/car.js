@@ -23,7 +23,7 @@ router.get('/', Utils.authenticateToken, (req, res) => {
     })  
 })
 
-// POST - create new haircut --------------------------------------
+// POST - create new car --------------------------------------
 router.post('/', (req, res) => {
   // validate 
   if(Object.keys(req.body).length === 0){   
@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
     newCar.save()
     .then(car => {        
       // success!  
-      // return 201 status with haircut object
+      // return 201 status with car object
       return res.status(201).json(car)
     })
     .catch(err => {
